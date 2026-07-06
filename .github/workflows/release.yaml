@@ -16,10 +16,12 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v7'
 
-      - name: 'Check that the tag matches the plugin version'
+      - name: 'Check the tag and the Marketplace token'
         env:
           TAG: ${{ github.ref_name }}
+          MARKETPLACE_TOKEN: ${{ secrets.MARKETPLACE_TOKEN }}
         run: |
+          [ -n "$MARKETPLACE_TOKEN" ] || { echo 'The MARKETPLACE_TOKEN secret is not set' >&2; exit 1; }
           PLUGIN_VERSION=$(sed -n 's:.*<version>\(.*\)</version>.*:\1:p' META-INF/plugin.xml)
           if [ "$TAG" != "$PLUGIN_VERSION" ]; then
             echo "Tag '$TAG' does not match <version>$PLUGIN_VERSION</version> in META-INF/plugin.xml" >&2
@@ -43,7 +45,7 @@ jobs:
         if: steps.cache-idea.outputs.cache-hit != 'true'
         run: |
           mkdir idea
-          curl -sSL "https://download.jetbrains.com/idea/idea-${IDEA_VERSION}.tar.gz" | tar -xz --strip-components=1 -C idea
+          curl -fsSL "https://download.jetbrains.com/idea/idea-${IDEA_VERSION}.tar.gz" | tar -xz --strip-components=1 -C idea
 
       # the install-copy loop inside build.sh skips silently because the runner has no ~/.local/share/JetBrains dirs
       - name: 'Build the plugin jar'

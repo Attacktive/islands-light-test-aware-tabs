@@ -32,7 +32,7 @@ The file is reformatted to this repo's `.editorconfig` (tab indentation, no blan
 
 `build.sh` compiles the providers against a locally installed IntelliJ IDEA Ultimate (set the `IDE` environment variable, or edit its default in the script, to point at your install — the compile classpath needs `lib/`, `plugins/java/lib/`, and `plugins/Kotlin/lib/`), zips the plugin jar, and copies it into every `~/.local/share/JetBrains/<IDE>2026.1/` directory it finds.
 
-```zsh
+```sh
 ./build.sh
 ```
 
@@ -40,7 +40,7 @@ Restart the IDE, then Settings → Appearance & Behavior → Appearance → Them
 
 ## Releasing
 
-Pushing a tag that exactly matches `<version>` in `META-INF/plugin.xml` triggers the release workflow: it compiles against a downloaded IntelliJ IDEA, attaches the jar to a GitHub Release with generated notes, and uploads it to JetBrains Marketplace. The Marketplace step needs a `MARKETPLACE_TOKEN` repository secret holding a [permanent token](https://plugins.jetbrains.com/author/me/tokens); remember to bump `<version>` first — Marketplace refuses reused version numbers.
+The release workflow runs on every tag push and fails fast unless the tag exactly matches `<version>` in `META-INF/plugin.xml`; on a match it compiles against a downloaded IntelliJ IDEA, attaches the jar to a GitHub Release with generated notes, and uploads it to JetBrains Marketplace. The Marketplace step needs a `MARKETPLACE_TOKEN` repository secret holding a [permanent token](https://plugins.jetbrains.com/author/me/tokens); remember to bump `<version>` first — Marketplace refuses reused version numbers.
 
 ## License
 
