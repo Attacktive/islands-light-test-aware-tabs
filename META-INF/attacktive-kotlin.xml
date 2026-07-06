@@ -1,0 +1,5 @@
+<idea-plugin>
+	<extensions defaultExtensionNs="com.intellij">
+		<iconProvider implementation="attacktive.islands.KotlinTestIconProvider" order="first"/>
+	</extensions>
+</idea-plugin>
