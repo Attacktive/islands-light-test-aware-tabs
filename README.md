@@ -24,7 +24,7 @@ Test detection is path-based (`TestSourcesFilter`), so it works for any language
 - two added palette keys: `tab-selected-bg-active-translucent` (`#D0DFFE8C`) and `tab-selected-bg-inactive-translucent` (`#D7D9E08C`)
 - `EditorTabs.underlinedTabBackground` and `EditorTabs.inactiveUnderlinedTabBackground` redirected to those keys
 
-Everything else in the theme file is identical to stock. The Java sources under `src/` are original to this project.
+The file is reformatted to this repo's `.editorconfig` (tab indentation, no blank separator lines); apart from that, everything else in the theme file is content-identical to stock. The Java sources under `src/` are original to this project.
 
 ## Building
 
