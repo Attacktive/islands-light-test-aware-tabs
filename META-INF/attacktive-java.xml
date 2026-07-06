@@ -1,5 +1,5 @@
 <idea-plugin>
 	<extensions defaultExtensionNs="com.intellij">
-		<iconProvider implementation="attacktive.islands.JavaTestClassIconProvider"/>
+		<iconProvider implementation="xyz.attacktive.islands.JavaTestClassIconProvider"/>
 	</extensions>
 </idea-plugin>

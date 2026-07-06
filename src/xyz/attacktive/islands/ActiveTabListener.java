@@ -1,4 +1,4 @@
-package attacktive.islands;
+package xyz.attacktive.islands;
 
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerEvent;

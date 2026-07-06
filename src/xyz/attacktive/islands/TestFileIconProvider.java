@@ -1,4 +1,4 @@
-package attacktive.islands;
+package xyz.attacktive.islands;
 
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.FileIconProvider;

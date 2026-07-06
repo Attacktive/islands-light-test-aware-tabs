@@ -1,29 +1,28 @@
-package attacktive.islands;
+package xyz.attacktive.islands;
 
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.IconProvider;
 import com.intellij.openapi.roots.TestSourcesFilter;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.kotlin.psi.KtClassOrObject;
+import org.jetbrains.kotlin.psi.KtFile;
 
 import javax.swing.Icon;
 
 /**
- * Marks top-level Java classes in test source roots with the IDE's own Tests scope icon, so the project view (where Java files render as class nodes) matches WebStorm's *.spec.ts treatment. Loaded only in Java-capable IDEs via the optional module dependency.
+ * Marks Kotlin files and top-level Kotlin classes in test source roots with the IDE's own Tests scope icon. Registered order="first" because the Kotlin plugin's own icon providers (Fe10KotlinIconProvider/FirKotlinIconProvider) would otherwise answer before this one. Loaded only when the Kotlin plugin is present via the optional dependency.
  */
-public final class JavaTestClassIconProvider extends IconProvider {
+public final class KotlinTestIconProvider extends IconProvider {
 	@Override
 	@Nullable
 	public Icon getIcon(@NotNull PsiElement element, int flags) {
-		if (!(element instanceof PsiClass)) {
-			return null;
-		}
+		boolean isTopLevelClass = element instanceof KtClassOrObject && element.getParent() instanceof KtFile;
 
-		if (!(element.getParent() instanceof PsiFile)) {
+		if (!(element instanceof KtFile) && !isTopLevelClass) {
 			return null;
 		}
 

@@ -1,5 +1,5 @@
 <idea-plugin>
-	<id>attacktive.islands-light-test-aware-tabs</id>
+	<id>xyz.attacktive.islands-light-test-aware-tabs</id>
 	<name>Islands Light with Test-Aware Tabs</name>
 	<version>1.0.0</version>
 	<vendor>attacktive</vendor>
@@ -10,9 +10,9 @@
 	<idea-version since-build="261"/>
 	<extensions defaultExtensionNs="com.intellij">
 		<themeProvider id="islands-light-test-aware-tabs" path="/theme/IslandsLightTestAwareTabs.theme.json"/>
-		<fileIconProvider implementation="attacktive.islands.TestFileIconProvider" order="first"/>
+		<fileIconProvider implementation="xyz.attacktive.islands.TestFileIconProvider" order="first"/>
 	</extensions>
 	<projectListeners>
-		<listener class="attacktive.islands.ActiveTabListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+		<listener class="xyz.attacktive.islands.ActiveTabListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
 	</projectListeners>
 </idea-plugin>

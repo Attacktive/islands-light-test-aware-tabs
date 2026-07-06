@@ -1,4 +1,4 @@
-package attacktive.islands;
+package xyz.attacktive.islands;
 
 import com.intellij.openapi.components.Service;
 import com.intellij.openapi.vfs.VirtualFile;
