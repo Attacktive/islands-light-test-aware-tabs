@@ -1,9 +1,9 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 # Builds the theme plugin jar (theme + icons + compiled icon provider) and installs it into every JetBrains 2026.1 IDE's plugins directory. Restart the IDEs afterwards.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-IDE=/opt/jetbrains-toolbox/apps/intellij-idea-ultimate
+IDE=${IDE:-/opt/jetbrains-toolbox/apps/intellij-idea-ultimate}
 JAR=islands-light-test-aware-tabs.jar
 
 rm -rf out
