@@ -2,6 +2,8 @@
 
 A fork of JetBrains' Islands Light UI theme that makes test files impossible to miss, bundled with a few tiny icon providers in a single plugin jar.
 
+<img width="1280" height="760" alt="Screenshot 2026-07-06 18:08:37" src="https://github.com/user-attachments/assets/4a35b145-578c-40fe-ab19-ebd542d69b99" />
+
 ## What it adds on top of stock Islands Light
 
 - **Active tab**: a file under a test source root shows the IDE's own Tests scope icon (the red◀ green▶ triangles) while its tab is selected; inactive tabs keep their regular file icons, so the tab strip stays readable. The stock green file-color background still marks inactive test tabs.
