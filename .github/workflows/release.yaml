@@ -55,10 +55,11 @@ jobs:
         run: mv islands-light-test-aware-tabs.jar "islands-light-test-aware-tabs-${{ github.ref_name }}.jar"
 
       - name: 'Upload the jar to GitHub Releases'
-        uses: 'softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b' # v3.0.1
+        uses: 'softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b'
         with:
           files: 'islands-light-test-aware-tabs-${{ github.ref_name }}.jar'
           generate_release_notes: true
+          prerelease: true
 
       - name: 'Upload the jar to JetBrains Marketplace'
         env:
