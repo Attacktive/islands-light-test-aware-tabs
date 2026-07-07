@@ -17,12 +17,6 @@ repositories {
 dependencies {
 	intellijPlatform {
 		intellijIdeaUltimate(providers.gradleProperty("platformVersion"))
-
-		// The optional depends in plugin.xml resolve against these bundled plugins:
-		// com.intellij.modules.java (PsiClass) and org.jetbrains.kotlin (KtFile/KtClassOrObject).
-		bundledPlugin("com.intellij.java")
-		bundledPlugin("org.jetbrains.kotlin")
-
 		pluginVerifier()
 	}
 }
@@ -34,8 +28,7 @@ intellijPlatform {
 		ideaVersion {
 			sinceBuild = providers.gradleProperty("pluginSinceBuild")
 
-			// Open-ended compatibility — matches the original hand-rolled plugin.xml,
-			// which set only since-build. Without this the plugin defaults untilBuild to <branch>.*.
+			// Open-ended compatibility — matches the original hand-rolled plugin.xml, which set only since-build. Without this the plugin defaults untilBuild to <branch>.*.
 			untilBuild = provider { null }
 		}
 	}
