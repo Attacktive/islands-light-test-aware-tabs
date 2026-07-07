@@ -1,7 +1,7 @@
 <idea-plugin>
 	<id>xyz.attacktive.islands-light-test-aware-tabs</id>
 	<name>Islands Light with Test-Aware Tabs</name>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<vendor>Attacktive</vendor>
 	<description>Islands Light fork with two test-file aids: the file in the active editor tab gets the IDE's Tests scope icon (red/green triangles) when it lives in a test source root — inactive tabs keep their regular icons — plus Java and Kotlin test classes carry the same icon in the project view, like WebStorm's *.spec.ts treatment; and the active tab's island fill is translucent so a test file's scope color shows through. Based on JetBrains' Islands Light theme (Apache 2.0).</description>
 	<depends>com.intellij.modules.platform</depends>
