@@ -20,27 +20,28 @@ Test detection is path-based (`TestSourcesFilter`), so it works for any language
 
 ## Changes from the stock theme (Apache 2.0 §4(b) notice)
 
-`theme/IslandsLightTestAwareTabs.theme.json` is a modified copy of `ManyIslandsLight.theme.json` from the IntelliJ Platform. The full delta:
+`src/main/resources/theme/IslandsLightTestAwareTabs.theme.json` is a modified copy of `ManyIslandsLight.theme.json` from the IntelliJ Platform. The full delta:
 
 - `name` and `author` fields changed to identify the fork
 - two added palette keys: `tab-selected-bg-active-translucent` (`#D0DFFE8C`) and `tab-selected-bg-inactive-translucent` (`#D7D9E08C`)
 - `EditorTabs.underlinedTabBackground` and `EditorTabs.inactiveUnderlinedTabBackground` redirected to those keys
 
-The file is reformatted to this repo's `.editorconfig` (tab indentation, no blank separator lines); apart from that, everything else in the theme file is content-identical to stock. The Java sources under `src/` are original to this project.
+The file is reformatted to this repo's `.editorconfig` (tab indentation, no blank separator lines); apart from that, everything else in the theme file is content-identical to stock. The Kotlin sources under `src/main/kotlin/` are original to this project.
 
 ## Building
 
-`build.sh` compiles the providers against a locally installed IntelliJ IDEA Ultimate (set the `IDE` environment variable, or edit its default in the script, to point at your install — the compile classpath needs `lib/`, `plugins/java/lib/`, and `plugins/Kotlin/lib/`), zips the plugin jar, and copies it into every `~/.local/share/JetBrains/<IDE>2026.1/` directory it finds.
+The plugin builds with Gradle via the [IntelliJ Platform Gradle Plugin](https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html); the wrapper pins the Gradle version, so all you need locally is a JDK 21.
 
 ```sh
-./build.sh
+./gradlew buildPlugin   # the installable zip lands in build/distributions/
+./gradlew runIde        # launch a sandbox IDE with the plugin loaded
 ```
 
-Restart the IDE, then Settings → Appearance & Behavior → Appearance → Theme → **Islands Light with Test-Aware Tabs**.
+Install the built zip via Settings → Plugins → ⚙ → **Install Plugin from Disk…**, then Settings → Appearance & Behavior → Appearance → Theme → **Islands Light with Test-Aware Tabs**.
 
 ## Releasing
 
-The release workflow runs on every tag push and fails fast unless the tag exactly matches `<version>` in `META-INF/plugin.xml`; on a match it compiles against a downloaded IntelliJ IDEA, attaches the jar to a GitHub Release with generated notes, and uploads it to JetBrains Marketplace. The Marketplace step needs a `MARKETPLACE_TOKEN` repository secret holding a [permanent token](https://plugins.jetbrains.com/author/me/tokens); remember to bump `<version>` first — Marketplace refuses reused version numbers.
+The release workflow runs on every tag push and fails fast unless the tag exactly matches `pluginVersion` in `gradle.properties`; on a match it verifies the plugin with the JetBrains Plugin Verifier, builds the zip, attaches it to a GitHub Release with generated notes, and publishes it to JetBrains Marketplace. The Marketplace step needs a `MARKETPLACE_TOKEN` repository secret holding a [permanent token](https://plugins.jetbrains.com/author/me/tokens); remember to bump `pluginVersion` first — Marketplace refuses reused version numbers.
 
 ## License
 
