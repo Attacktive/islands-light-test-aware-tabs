@@ -1,19 +1,20 @@
 # Islands Light with Test-Aware Tabs
 
-A fork of JetBrains' Islands Light UI theme that makes test files impossible to miss, bundled with a tiny icon provider in a single plugin jar.
+A fork of JetBrains' Islands Light UI theme that makes test files and non-project files impossible to miss, bundled with a pair of tiny icon providers in a single plugin jar.
 
 <img width="1280" height="760" alt="Screenshot 2026-07-06 18:08:37" src="https://github.com/user-attachments/assets/4a35b145-578c-40fe-ab19-ebd542d69b99" />
 
 ## What it adds on top of stock Islands Light
 
-- **Active tab**: a file under a test source root shows the IDE's own Tests scope icon (the red◀ green▶ triangles) while its tab is selected; inactive tabs keep their regular file icons, so the tab strip stays readable. The stock green file-color background still marks inactive test tabs.
+- **Active tab (test files)**: a file under a test source root shows the IDE's own Tests scope icon (the red◀ green▶ triangles) while its tab is selected; inactive tabs keep their regular file icons, so the tab strip stays readable. The stock green file-color background still marks inactive test tabs.
+- **Active tab (non-project files)**: a file from outside the project — one under no content or library root, the kind the IDE tints yellow — shows a warning icon (the yellow triangle) while its tab is selected, so an external file you've opened stands out once it's active instead of being masked by the selection color.
 - **Translucent active-tab fill**: the island fill of the selected tab is slightly translucent, so a test file's scope color tints the active tab — a language-agnostic backup signal.
 
 Test detection is path-based (`TestSourcesFilter`), so it works for any language whose test roots are marked — and only for files under marked test source roots.
 
 ## How it works
 
-- A `fileIconProvider` (with `order="first"`) answers the Tests scope icon for files in test source roots, but only while the file is a selected tab; a `FileEditorManagerListener` snapshots the selection on every tab switch and calls `FileEditorManagerEx.refreshIcons()` so the tab strip actually re-asks.
+- Two `fileIconProvider`s (both `order="first"`) answer these icons — the Tests scope icon for files in test source roots, the warning icon for non-project files — but only while the file is a selected tab; a `FileEditorManagerListener` snapshots the selection on every tab switch and calls `FileEditorManagerEx.refreshIcons()` so the tab strip actually re-asks.
 - The theme itself only redirects the two underlined-tab background keys to translucent variants.
 
 ## Changes from the stock theme (Apache 2.0 §4(b) notice)

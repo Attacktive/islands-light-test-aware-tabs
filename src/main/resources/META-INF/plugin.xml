@@ -2,10 +2,11 @@
 	<id>xyz.attacktive.islands-light-test-aware-tabs</id>
 	<name>Islands Light with Test-Aware Tabs</name>
 	<vendor>Attacktive</vendor>
-	<description>Islands Light fork with two test-file aids: the file in the active editor tab gets the IDE's Tests scope icon (red/green triangles) when it lives in a test source root — inactive tabs keep their regular icons — and the active tab's island fill is translucent so a test file's scope color shows through. Based on JetBrains' Islands Light theme (Apache 2.0).</description>
+	<description>Islands Light fork that flags atypical files in the editor tab strip. The file in the active tab gets the IDE's Tests scope icon (red/green triangles) when it lives in a test source root, or a warning icon when it's a non-project file from outside the project — inactive tabs keep their regular icons. The active tab's island fill is also translucent, so a test file's scope color shows through. Based on JetBrains' Islands Light theme (Apache 2.0).</description>
 	<depends>com.intellij.modules.platform</depends>
 	<extensions defaultExtensionNs="com.intellij">
 		<themeProvider id="islands-light-test-aware-tabs" path="/theme/IslandsLightTestAwareTabs.theme.json"/>
+		<fileIconProvider implementation="xyz.attacktive.islands.ExternalFileIconProvider" order="first"/>
 		<fileIconProvider implementation="xyz.attacktive.islands.TestFileIconProvider" order="first"/>
 	</extensions>
 	<projectListeners>
