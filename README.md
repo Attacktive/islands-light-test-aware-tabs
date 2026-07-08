@@ -2,7 +2,9 @@
 
 A fork of JetBrains' Islands Light UI theme that makes test files and non-project files impossible to miss, bundled with a pair of tiny icon providers in a single plugin jar.
 
-<img width="1280" height="760" alt="Screenshot 2026-07-06 18:08:37" src="https://github.com/user-attachments/assets/4a35b145-578c-40fe-ab19-ebd542d69b99" />
+![IntelliJ IDEA with the theme: the active tab of a test file (UtilityAndPerformanceTests.kt) shows the red/green Tests scope icon](https://plugins.jetbrains.com/files/32771/screenshot_019d0051-3ee0-448f-b24f-5f1cbfdd3dfa)
+
+![Editor tab strip: the active tab of a non-project file (random_external_file.md) shows a yellow warning triangle, while a test file's tab shows the red/green Tests scope icon](https://plugins.jetbrains.com/files/32771/screenshot_02099d2d-15ce-4544-a215-b7731f872f5d)
 
 ## What it adds on top of stock Islands Light
 
