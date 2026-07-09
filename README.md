@@ -1,6 +1,6 @@
 # Islands Light with Test-Aware Tabs
 
-A fork of JetBrains' Islands Light UI theme that makes test files and non-project files impossible to miss, bundled with a pair of tiny icon providers in a single plugin jar.
+A fork of JetBrains' Islands Light UI theme that makes test files and non-project files impossible to miss, bundled with a pair of tiny icon patchers in a single plugin jar.
 
 ![IntelliJ IDEA with the theme: the active tab of a test file (UtilityAndPerformanceTests.kt) shows the red/green Tests scope icon](https://plugins.jetbrains.com/files/32771/screenshot_019d0051-3ee0-448f-b24f-5f1cbfdd3dfa)
 
@@ -16,7 +16,7 @@ Test detection is path-based (`TestSourcesFilter`), so it works for any language
 
 ## How it works
 
-- Two `fileIconProvider`s (both `order="first"`) answer these icons — the Tests scope icon for files in test source roots, the warning icon for non-project files — but only while the file is a selected tab; a `FileEditorManagerListener` snapshots the selection on every tab switch and calls `FileEditorManagerEx.refreshIcons()` so the tab strip actually re-asks.
+- Two `fileIconPatcher`s (both `order="after javaFileIconPatcher"`) set these icons — the Tests scope icon for files in test source roots, the warning icon for non-project files — but only while the file is a selected tab; a `FileEditorManagerListener` snapshots the selection on every tab switch and calls `FileEditorManagerEx.refreshIcons()` so the tab strip actually re-asks. They have to be patchers, not providers: the platform runs every `FileIconPatcher` after the provider chain, and the Java plugin's `JavaFileIconPatcher` would otherwise reclaim a `.java` tab — the outside-source icon for an external file, the PSI class icon for a test — so a mere provider's icon never survives on `.java` files.
 - The theme itself only redirects the two underlined-tab background keys to translucent variants.
 
 ## Changes from the stock theme (Apache 2.0 §4(b) notice)

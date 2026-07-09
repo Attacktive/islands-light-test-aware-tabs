@@ -6,8 +6,8 @@
 	<depends>com.intellij.modules.platform</depends>
 	<extensions defaultExtensionNs="com.intellij">
 		<themeProvider id="islands-light-test-aware-tabs" path="/theme/IslandsLightTestAwareTabs.theme.json"/>
-		<fileIconProvider implementation="xyz.attacktive.islands.ExternalFileIconProvider" order="first"/>
-		<fileIconProvider implementation="xyz.attacktive.islands.TestFileIconProvider" order="first"/>
+		<fileIconPatcher implementation="xyz.attacktive.islands.ExternalFileIconPatcher" order="after javaFileIconPatcher"/>
+		<fileIconPatcher implementation="xyz.attacktive.islands.TestFileIconPatcher" order="after javaFileIconPatcher"/>
 	</extensions>
 	<projectListeners>
 		<listener class="xyz.attacktive.islands.ActiveTabListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>

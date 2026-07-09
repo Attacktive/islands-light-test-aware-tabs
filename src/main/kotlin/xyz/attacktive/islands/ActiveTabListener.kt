@@ -7,10 +7,10 @@ import com.intellij.openapi.fileEditor.ex.FileEditorManagerEx
 import com.intellij.openapi.vfs.VirtualFile
 
 /**
- * Keeps [ActiveTabs] in sync with the editor selection and makes the tab strips recompute their icons on every switch, so [TestFileIconProvider] decorates only the active tab.
+ * Keeps [ActiveTabs] in sync with the editor selection and makes the tab strips recompute their icons on every switch, so [TestFileIconPatcher] and [ExternalFileIconPatcher] decorate only the active tab.
  * Tab icons are otherwise only recomputed on file-level events, never on selection changes.
  */
-class ActiveTabListener : FileEditorManagerListener {
+class ActiveTabListener: FileEditorManagerListener {
 	override fun selectionChanged(event: FileEditorManagerEvent) {
 		refresh(event.manager)
 	}
