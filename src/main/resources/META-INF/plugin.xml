@@ -2,7 +2,11 @@
 	<id>xyz.attacktive.islands-light-test-aware-tabs</id>
 	<name>Islands Light with Test-Aware Tabs</name>
 	<vendor>Attacktive</vendor>
-	<description>Islands Light fork that flags atypical files in the editor tab strip. The file in the active tab gets the IDE's Tests scope icon (red/green triangles) when it lives in a test source root, or a warning icon when it's a non-project file from outside the project — inactive tabs keep their regular icons. The active tab's island fill is also translucent, so a test file's scope color shows through. Based on JetBrains' Islands Light theme (Apache 2.0).</description>
+	<description><![CDATA[
+		<p>Islands Light fork that flags atypical files in the editor tab strip. The file in the active tab gets the IDE's Tests scope icon (red/green triangles) when it lives in a test source root, or a warning icon when it's a non-project file from outside the project — inactive tabs keep their regular icons. The active tab's island fill is also translucent, so a test file's scope color shows through. Based on JetBrains' Islands Light theme (Apache 2.0).</p>
+		<p>Once the plugin is enabled, the file icons stay patched, which means switching to a different theme doesn't reset them.<br/>
+		The off switch is the plugin itself: disable or uninstall it in Settings → Plugins. That takes effect without a restart, because <code>fileIconPatcher</code> is a dynamic extension point.</p>
+	]]></description>
 	<depends>com.intellij.modules.platform</depends>
 	<extensions defaultExtensionNs="com.intellij">
 		<themeProvider id="islands-light-test-aware-tabs" path="/theme/IslandsLightTestAwareTabs.theme.json"/>
