@@ -19,6 +19,12 @@ Test detection is path-based (`TestSourcesFilter`), so it works for any language
 - Two `fileIconPatcher`s (both `order="after javaFileIconPatcher"`) set these icons — the Tests scope icon for files in test source roots, the warning icon for non-project files — but only while the file is a selected tab; a `FileEditorManagerListener` snapshots the selection on every tab switch and calls `FileEditorManagerEx.refreshIcons()` so the tab strip actually re-asks. They have to be patchers, not providers: the platform runs every `FileIconPatcher` after the provider chain, and the Java plugin's `JavaFileIconPatcher` would otherwise reclaim a `.java` tab — the outside-source icon for an external file, the PSI class icon for a test — so a mere provider's icon never survives on `.java` files.
 - The theme itself only redirects the two underlined-tab background keys to translucent variants.
 
+## Switching themes does not remove the icons
+
+Expect the tab icons to stay patched under any theme, including after switching away from this one. A JetBrains plugin is a single container of extensions with one shared lifecycle — enabled or not — and picking a theme in Settings → Appearance only swaps the look-and-feel: the `themeProvider` is just one extension among this plugin's three, so the two `fileIconPatcher`s never even hear about the change.
+
+The off switch is the plugin itself: disable or uninstall it in Settings → Plugins. That takes effect without a restart, because `fileIconPatcher` is a dynamic extension point.
+
 ## Changes from the stock theme (Apache 2.0 §4(b) notice)
 
 `src/main/resources/theme/IslandsLightTestAwareTabs.theme.json` is a modified copy of `ManyIslandsLight.theme.json` from the IntelliJ Platform. The full delta:
